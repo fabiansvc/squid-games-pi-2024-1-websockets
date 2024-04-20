@@ -3,11 +3,12 @@
 const { Server } = require("socket.io");
 
 const clientURL = "http://localhost:3000"
+const clientURLDeploy = "https://squid-games-pi-2024-1.vercel.app"
 const port = 5000
 
 const io = new Server({
     cors: {
-        origin: [clientURL]
+        origin: [clientURL, clientURLDeploy]
     },
 });
 

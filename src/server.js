@@ -2,13 +2,13 @@
 
 const { Server } = require("socket.io");
 
-const clientURL = "http://localhost:3000"
+const clientURLLocalhost = "http://localhost:3000"
 const clientURLDeploy = "https://squid-games-pi-2024-1.vercel.app"
 const port = 5000
 
 const io = new Server({
     cors: {
-        origin: [clientURL, clientURLDeploy]
+        origin: [clientURLLocalhost, clientURLDeploy]
     },
 });
 
@@ -22,13 +22,11 @@ io.on('connection', (socket) => {
         io.engine.clientsCount +
     " player connected."
     );
-
+    
     socket.on("player-connected", () => {
         players.push({
             id: socket.id,
-            urlAvatar: io.engine.clientsCount === 1 ?
-                "/assets/models/avatar/Player1.glb" :
-                "/assets/models/avatar/Player2.glb",
+            urlAvatar: "",
             position: null,
             rotation: null,
             animation: "Idle",
@@ -56,7 +54,7 @@ io.on('connection', (socket) => {
             "Player disconnected with ID",
             socket.id, ". There are " +
             io.engine.clientsCount +
-        " players connected");
+        " players disconnected");
     });
 
 

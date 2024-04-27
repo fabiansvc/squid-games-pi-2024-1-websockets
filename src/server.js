@@ -3,7 +3,7 @@
 const { Server } = require("socket.io");
 
 const clientURLLocalhost = "http://localhost:3000"
-const clientURLDeploy = "https://squid-games-pi-2024-1.vercel.app"
+const clientURLDeploy = process.env.CLIENT_URL
 const port = 5000
 
 const io = new Server({
